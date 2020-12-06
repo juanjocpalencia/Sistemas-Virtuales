@@ -14,6 +14,11 @@ namespace SistemasVirtuales.Controllers
     {
         private SistemasVirtualesEntities db = new SistemasVirtualesEntities();
 
+
+        public ActionResult Bienvenido(int? id)
+        {
+            return View();
+        }
         // GET: Admins
         public ActionResult Index()
         {
