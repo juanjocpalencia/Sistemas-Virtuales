@@ -22,7 +22,13 @@ namespace SistemasVirtuales.Controllers
 
         public ActionResult Bienvenido(int? id)
         {
-            return View();
+            var tutela = db.Tutores_Alumnos.Where(s => s.id_Docente == id);
+            List<Alumnos> Tutelados = new List<Alumnos>();
+            foreach(var alumno in tutela)
+            {
+                Tutelados.Add(db.Alumnos.Find(alumno.id_Alumno));
+            }
+            return View(Tutelados);
         }
 
         // GET: Docentes/Details/5
