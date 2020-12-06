@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SistemasVirtualesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="id_Admi" />
+    </Key>
+    <Property Name="id_Admi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="pwd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="usuario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ap_pat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ap_mat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="puesto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="rol" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="id_Alumnos" />
+    </Key>
+    <Property Name="id_Alumnos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="matricula" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ap_pat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ap_mat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="carrera" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="birthday" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Tutores_Alumnos" Relationship="Self.FK_Tutores_Alumnos_Alumnos" FromRole="Alumnos" ToRole="Tutores_Alumnos" />
+  </EntityType>
+  <EntityType Name="Docentes">
+    <Key>
+      <PropertyRef Name="id_Docente" />
+    </Key>
+    <Property Name="id_Docente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ap_pat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ap_mat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="pwd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="rol" Type="Int32" />
+    <NavigationProperty Name="Tutores_Alumnos" Relationship="Self.FK_Tutores_Alumnos_Docentes" FromRole="Docentes" ToRole="Tutores_Alumnos" />
+  </EntityType>
+  <EntityType Name="Semestre">
+    <Key>
+      <PropertyRef Name="id_semestre" />
+    </Key>
+    <Property Name="id_semestre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="inicio" Type="DateTime" Precision="3" />
+    <Property Name="fin" Type="DateTime" Precision="3" />
+    <Property Name="folio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tutores_Alumnos" Relationship="Self.FK_Tutores_Alumnos_Semestre" FromRole="Semestre" ToRole="Tutores_Alumnos" />
+  </EntityType>
+  <EntityType Name="Tutores_Alumnos">
+    <Key>
+      <PropertyRef Name="id_relacion" />
+    </Key>
+    <Property Name="id_relacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Alumno" Type="Int32" />
+    <Property Name="id_Docente" Type="Int32" />
+    <Property Name="id_Semetre" Type="Int32" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.FK_Tutores_Alumnos_Alumnos" FromRole="Tutores_Alumnos" ToRole="Alumnos" />
+    <NavigationProperty Name="Docentes" Relationship="Self.FK_Tutores_Alumnos_Docentes" FromRole="Tutores_Alumnos" ToRole="Docentes" />
+    <NavigationProperty Name="Semestre" Relationship="Self.FK_Tutores_Alumnos_Semestre" FromRole="Tutores_Alumnos" ToRole="Semestre" />
+  </EntityType>
+  <Association Name="FK_Tutores_Alumnos_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+    <End Role="Tutores_Alumnos" Type="Self.Tutores_Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_Alumnos" />
+      </Principal>
+      <Dependent Role="Tutores_Alumnos">
+        <PropertyRef Name="id_Alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tutores_Alumnos_Docentes">
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="0..1" />
+    <End Role="Tutores_Alumnos" Type="Self.Tutores_Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docentes">
+        <PropertyRef Name="id_Docente" />
+      </Principal>
+      <Dependent Role="Tutores_Alumnos">
+        <PropertyRef Name="id_Docente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tutores_Alumnos_Semestre">
+    <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+    <End Role="Tutores_Alumnos" Type="Self.Tutores_Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semestre">
+        <PropertyRef Name="id_semestre" />
+      </Principal>
+      <Dependent Role="Tutores_Alumnos">
+        <PropertyRef Name="id_Semetre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SistemasVirtualesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admins" />
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+    <EntitySet Name="Docentes" EntityType="Self.Docentes" />
+    <EntitySet Name="Semestre" EntityType="Self.Semestre" />
+    <EntitySet Name="Tutores_Alumnos" EntityType="Self.Tutores_Alumnos" />
+    <AssociationSet Name="FK_Tutores_Alumnos_Alumnos" Association="Self.FK_Tutores_Alumnos_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Tutores_Alumnos" EntitySet="Tutores_Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tutores_Alumnos_Docentes" Association="Self.FK_Tutores_Alumnos_Docentes">
+      <End Role="Docentes" EntitySet="Docentes" />
+      <End Role="Tutores_Alumnos" EntitySet="Tutores_Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tutores_Alumnos_Semestre" Association="Self.FK_Tutores_Alumnos_Semestre">
+      <End Role="Semestre" EntitySet="Semestre" />
+      <End Role="Tutores_Alumnos" EntitySet="Tutores_Alumnos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
