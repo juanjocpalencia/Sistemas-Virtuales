@@ -12,28 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.correo)
+            email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pwd)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuario)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            Puesto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ap_pat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ap_mat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.puesto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rol)
+            Rol
         </th>
         <th></th>
     </tr>
@@ -44,19 +35,10 @@
             @Html.DisplayFor(modelItem => item.correo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pwd)
+            @Html.DisplayFor(modelItem => item.usuario) 
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ap_pat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ap_mat)
+            @Html.DisplayFor(modelItem => item.nombre) @Html.DisplayFor(modelItem => item.ap_pat) @Html.DisplayFor(modelItem => item.ap_mat)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.puesto)

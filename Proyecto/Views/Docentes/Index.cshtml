@@ -12,25 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ap_pat)
+            Estatus
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ap_mat)
+            email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pwd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rol)
+            Rol
         </th>
         <th></th>
         <th></th>
@@ -39,13 +30,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ap_pat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ap_mat)
+            @Html.DisplayFor(modelItem => item.nombre) @Html.DisplayFor(modelItem => item.ap_pat) @Html.DisplayFor(modelItem => item.ap_mat)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.status)
@@ -54,12 +39,13 @@
             @Html.DisplayFor(modelItem => item.correo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pwd)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.rol)
         </td>
-        <td><!---Aqui va el botom--></td>
+        <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Launch demo modal
+            </button>
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id_Docente }) |
             @Html.ActionLink("Details", "Details", new { id=item.id_Docente }) |
