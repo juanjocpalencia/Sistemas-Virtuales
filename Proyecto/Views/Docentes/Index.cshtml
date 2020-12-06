@@ -33,6 +33,7 @@
             @Html.DisplayNameFor(model => model.rol)
         </th>
         <th></th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -58,6 +59,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.rol)
         </td>
+        <td><!---Aqui va el botom--></td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id_Docente }) |
             @Html.ActionLink("Details", "Details", new { id=item.id_Docente }) |
