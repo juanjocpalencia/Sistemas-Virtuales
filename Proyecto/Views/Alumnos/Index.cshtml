@@ -12,22 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.matricula)
+            Matricula
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ap_pat)
+            Carrera
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ap_mat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.carrera)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthday)
+            Fecha de Nacimiento
         </th>
         <th></th>
     </tr>
@@ -38,13 +32,7 @@
             @Html.DisplayFor(modelItem => item.matricula)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ap_pat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ap_mat)
+            @Html.DisplayFor(modelItem => item.nombre) @Html.DisplayFor(modelItem => item.ap_pat) @Html.DisplayFor(modelItem => item.ap_mat)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.carrera)
