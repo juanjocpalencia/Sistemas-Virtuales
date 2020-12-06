@@ -26,7 +26,7 @@ namespace SistemasVirtuales.Controllers
             var Admin = db.Admins.Where(s=>(s.usuario.Equals(user) || s.correo.Equals(user)) && s.pwd.Equals(pwd)).FirstOrDefault();
             if (Admin != null)
             {
-                return RedirectToAction("");
+                return RedirectToAction("Bienvenido","Admin",new {id= Admin.id_Admi});
             }
             return View();
         }
