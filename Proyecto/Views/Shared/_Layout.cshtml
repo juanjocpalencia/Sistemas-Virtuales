@@ -17,9 +17,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                @{ 
+                    string vista = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+                    string controlador = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+                    if (Session["Rol"] == null)
+                    {
+                        Response.Redirect(Url.Action("Login", "Home"));
+                    }
+                    else
+                    {
+                        if (Session["Rol"].Equals("Admin") && (vista.Equals("Bienvenido") && controlador.Equals("Docentes")))
+                        {
+                            @Html.ActionLink("Tutorias", "Bienvenido", "Admins", new { id = Session["id"] }, new { @class = "navbar-brand" })
+                        }
+                        else
+                        {
+                            if (Session["Rol"].Equals("Docente"))
+                            {
+                                @Html.ActionLink("Tutorias", "Bienvenido", "Docentes", new { id = Session["id"] }, new { @class = "navbar-brand" })
+                            }
+                        }
+                    }
+                    }
                 @if (Session["Rol"].Equals("Admin"))
                 {
-                    @Html.ActionLink("Tutorias", "Bienvenido", "Admins", new {id=Session["id"] }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Tutorias", "Bienvenido", "Admins", new { id = Session["id"] }, new { @class = "navbar-brand" })
                 }
                 else
                 {
