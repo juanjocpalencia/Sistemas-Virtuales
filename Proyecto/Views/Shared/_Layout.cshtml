@@ -29,13 +29,13 @@
                     {
                         if (Session["Rol"].Equals("Admin") && (vista.Equals("Bienvenido") && controlador.Equals("Docentes")))
                         {
-                            @Html.ActionLink("Tutorias", "Bienvenido", "Admins", new { id = Session["id"] }, new { @class = "navbar-brand" })
+                            Response.Redirect(Url.Action("Bienvenido", "Admins",new {id=Session["id"] }));
                         }
                         else
                         {
-                            if (Session["Rol"].Equals("Docente"))
+                            if (Session["Rol"].Equals("Docente") && !vista.Equals("Bienvenido"))
                             {
-                                @Html.ActionLink("Tutorias", "Bienvenido", "Docentes", new { id = Session["id"] }, new { @class = "navbar-brand" })
+                                Response.Redirect(Url.Action("Bienvenido", "Docentes", new { id = Session["id"] }));
                             }
                         }
                     }
@@ -57,7 +57,8 @@
                         <li>@Html.ActionLink("Maestros", "Index", "Docentes")</li>
                         <li>@Html.ActionLink("Alumnos", "Index", "Alumnos")</li>
                         <li>@Html.ActionLink("Semestre", "Index", "Semestres")</li>
-                    }
+                        
+                    }<li> @Html.ActionLink("LogOut", "LogOut", "Home")</li>
                 </ul>
             </div>
         </div>

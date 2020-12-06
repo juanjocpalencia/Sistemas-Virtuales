@@ -19,6 +19,13 @@ namespace SistemasVirtuales.Controllers
         {
             return View();
         }
+        public ActionResult LogOut()
+        {
+            Session["rol"] = null;
+            Session["id"] = null;
+            Session["Nombre"] = null;
+            return RedirectToAction("Login","Home");
+        }
 
         [HttpPost]
         public ActionResult Login(string pwd,string user)

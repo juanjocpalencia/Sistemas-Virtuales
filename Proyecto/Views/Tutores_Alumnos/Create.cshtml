@@ -1,5 +1,6 @@
 ﻿@model SistemasVirtuales.Models.Tutores_Alumnos
 
+
 @{
     ViewBag.Title = "Create";
     Layout = null;
@@ -47,7 +48,6 @@
     </div>
 }
 
-
 <table class="table">
     <tr>
         <th>
@@ -67,13 +67,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.matricula)
+                @item.matricula
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre) @Html.DisplayFor(modelItem => item.ap_pat) @Html.DisplayFor(modelItem => item.ap_mat)
+                @item.nombre @item.ap_pat @item.ap_mat
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.carrera)
+                @item.carrera
             </td>
 
         </tr>

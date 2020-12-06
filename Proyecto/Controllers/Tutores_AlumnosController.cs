@@ -39,6 +39,8 @@ namespace SistemasVirtuales.Controllers
         // GET: Tutores_Alumnos/Create
         public ActionResult Create(int id)
         {
+           
+            ViewBag.Id = id;
             var semestre = db.Semestre.OrderByDescending(s => s.id_semestre).FirstOrDefault();
             ViewBag.id_Alumno = new SelectList(db.Alumnos.OrderBy(s=>s.matricula), "id_Alumnos", "matricula");
             ViewBag.id_Docente = new SelectList(db.Docentes.OrderBy(s=>s.ap_pat), "id_Docente", "nombre",id);
@@ -61,17 +63,24 @@ namespace SistemasVirtuales.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_relacion,id_Alumno,id_Docente,id_Semetre")] Tutores_Alumnos tutores_Alumnos)
         {
-            if (ModelState.IsValid)
+            var validar = db.Tutores_Alumnos.Where(s => s.id_Alumno == tutores_Alumnos.id_Alumno && s.id_Semetre == tutores_Alumnos.id_Semetre).FirstOrDefault();
+            if (validar == null)
             {
-                db.Tutores_Alumnos.Add(tutores_Alumnos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Tutores_Alumnos.Add(tutores_Alumnos);
+                    db.SaveChanges();
+                   
+                }
             }
+            return RedirectToAction("Index","Docentes");
 
+
+            /*
             ViewBag.id_Alumno = new SelectList(db.Alumnos, "id_Alumnos", "matricula", tutores_Alumnos.id_Alumno);
             ViewBag.id_Docente = new SelectList(db.Docentes, "id_Docente", "nombre", tutores_Alumnos.id_Docente);
             ViewBag.id_Semetre = new SelectList(db.Semestre, "id_semestre", "folio", tutores_Alumnos.id_Semetre);
-            return View(tutores_Alumnos);
+            return View(tutores_Alumnos);*/
         }
 
         // GET: Tutores_Alumnos/Edit/5
