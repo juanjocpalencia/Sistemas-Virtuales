@@ -26,13 +26,20 @@ namespace SistemasVirtuales.Controllers
             var Admin = db.Admins.Where(s=>(s.usuario.Equals(user) || s.correo.Equals(user)) && s.pwd.Equals(pwd)).FirstOrDefault();
             if (Admin != null)
             {
+                Session["rol"] = "Admin";
+                Session["id"] = Admin.id_Admi;
+                Session["Nombre"] = Admin.nombre + " " + Admin.ap_pat + " " + Admin.ap_mat;
                 return RedirectToAction("Bienvenido","Admins",new {id= Admin.id_Admi});
+                
             }
             else
             {
                 var Docente= db.Docentes.Where(s => ((s.nombre+"."+s.ap_pat).Equals(user) || s.correo.Equals(user)) && s.pwd.Equals(pwd)).FirstOrDefault();
                 if(Docente != null)
                 {
+                    Session["rol"] = "Docente";
+                    Session["id"] = Docente.id_Docente;
+                    Session["Nombre"] = Docente.nombre + " " + Docente.ap_pat + " " + Docente.ap_mat;
                     return RedirectToAction("Bienvenido", "Docentes", new { id = Docente.id_Docente });
                 }
             }

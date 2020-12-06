@@ -17,14 +17,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Tutorias", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["Rol"].Equals("Admin"))
+                {
+                    @Html.ActionLink("Tutorias", "Bienvenido", "Admins", new {id=Session["id"] }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Tutorias", "Bienvenido", "Docentes", new { id = Session["id"] }, new { @class = "navbar-brand" })
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Administrativos", "Index", "Admins")</li>
-                    <li>@Html.ActionLink("Maestros", "Index", "Docentes")</li>
-                    <li>@Html.ActionLink("Alumnos", "Index", "Alumnos")</li>
-
+                    @if (Session["Rol"].Equals("Admin"))
+                    {
+                        <li>@Html.ActionLink("Administrativos", "Index", "Admins")</li>
+                        <li>@Html.ActionLink("Maestros", "Index", "Docentes")</li>
+                        <li>@Html.ActionLink("Alumnos", "Index", "Alumnos")</li>
+                    }
                 </ul>
             </div>
         </div>
