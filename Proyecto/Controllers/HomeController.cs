@@ -26,8 +26,17 @@ namespace SistemasVirtuales.Controllers
             var Admin = db.Admins.Where(s=>(s.usuario.Equals(user) || s.correo.Equals(user)) && s.pwd.Equals(pwd)).FirstOrDefault();
             if (Admin != null)
             {
-                return RedirectToAction("Bienvenido","Admin",new {id= Admin.id_Admi});
+                return RedirectToAction("Bienvenido","Admins",new {id= Admin.id_Admi});
             }
+            else
+            {
+                var Docente= db.Docentes.Where(s => ((s.nombre+"."+s.ap_pat).Equals(user) || s.correo.Equals(user)) && s.pwd.Equals(pwd)).FirstOrDefault();
+                if(Docente != null)
+                {
+                    return RedirectToAction("Bienvenido", "Docentes", new { id = Docente.id_Docente });
+                }
+            }
+            ViewBag.Error = "Usuario no valido";
             return View();
         }
 

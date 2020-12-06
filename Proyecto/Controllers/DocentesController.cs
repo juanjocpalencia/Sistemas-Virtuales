@@ -20,6 +20,11 @@ namespace SistemasVirtuales.Controllers
             return View(db.Docentes.ToList());
         }
 
+        public ActionResult Bienvenido(int? id)
+        {
+            return View();
+        }
+
         // GET: Docentes/Details/5
         public ActionResult Details(int? id)
         {
