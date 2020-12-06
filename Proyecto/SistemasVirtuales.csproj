@@ -132,6 +132,8 @@
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\DocentesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SemestresController.cs" />
+    <Compile Include="Controllers\Tutores_AlumnosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +198,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Master.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -238,6 +241,16 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admins\Bienvenido.cshtml" />
     <Content Include="Views\Docentes\Bienvenido.cshtml" />
+    <Content Include="Views\Semestres\Create.cshtml" />
+    <Content Include="Views\Semestres\Delete.cshtml" />
+    <Content Include="Views\Semestres\Details.cshtml" />
+    <Content Include="Views\Semestres\Edit.cshtml" />
+    <Content Include="Views\Semestres\Index.cshtml" />
+    <Content Include="Views\Tutores_Alumnos\Create.cshtml" />
+    <Content Include="Views\Tutores_Alumnos\Delete.cshtml" />
+    <Content Include="Views\Tutores_Alumnos\Details.cshtml" />
+    <Content Include="Views\Tutores_Alumnos\Edit.cshtml" />
+    <Content Include="Views\Tutores_Alumnos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

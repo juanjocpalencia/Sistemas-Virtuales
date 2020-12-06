@@ -10,130 +10,107 @@ using SistemasVirtuales.Models;
 
 namespace SistemasVirtuales.Controllers
 {
-    public class DocentesController : Controller
+    public class SemestresController : Controller
     {
         private SistemasVirtualesEntities db = new SistemasVirtualesEntities();
 
-        // GET: Docentes
+        // GET: Semestres
         public ActionResult Index()
         {
-            return View(db.Docentes.ToList());
+            return View(db.Semestre.ToList());
         }
 
-        public ActionResult Bienvenido(int? id)
-        {
-            var tutela = db.Tutores_Alumnos.Where(s => s.id_Docente == id);
-            List<Alumnos> Tutelados = new List<Alumnos>();
-            foreach(var alumno in tutela)
-            {
-                Tutelados.Add(db.Alumnos.Find(alumno.id_Alumno));
-            }
-            return View(Tutelados);
-        }
-
-        public ActionResult verTutelado(int id)
-        {
-            var semestre = db.Semestre.OrderByDescending(s => s.id_semestre).FirstOrDefault();
-            var tutela = db.Tutores_Alumnos.Where(s => s.id_Docente == id && s.id_Semetre==semestre.id_semestre);
-            List<Alumnos> Tutelados = new List<Alumnos>();
-            foreach (var alumno in tutela)
-            {
-                Tutelados.Add(db.Alumnos.Find(alumno.id_Alumno));
-            }
-            return View(Tutelados);
-        }
-
-        // GET: Docentes/Details/5
+        // GET: Semestres/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Docentes docentes = db.Docentes.Find(id);
-            if (docentes == null)
+            Semestre semestre = db.Semestre.Find(id);
+            if (semestre == null)
             {
                 return HttpNotFound();
             }
-            return View(docentes);
+            return View(semestre);
         }
 
-        // GET: Docentes/Create
+        // GET: Semestres/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Docentes/Create
+        // POST: Semestres/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_Docente,nombre,ap_pat,ap_mat,status,correo,pwd,rol")] Docentes docentes)
+        public ActionResult Create([Bind(Include = "id_semestre,inicio,fin,folio")] Semestre semestre)
         {
             if (ModelState.IsValid)
             {
-                db.Docentes.Add(docentes);
+                db.Semestre.Add(semestre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(docentes);
+            return View(semestre);
         }
 
-        // GET: Docentes/Edit/5
+        // GET: Semestres/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Docentes docentes = db.Docentes.Find(id);
-            if (docentes == null)
+            Semestre semestre = db.Semestre.Find(id);
+            if (semestre == null)
             {
                 return HttpNotFound();
             }
-            return View(docentes);
+            return View(semestre);
         }
 
-        // POST: Docentes/Edit/5
+        // POST: Semestres/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Docente,nombre,ap_pat,ap_mat,status,correo,pwd,rol")] Docentes docentes)
+        public ActionResult Edit([Bind(Include = "id_semestre,inicio,fin,folio")] Semestre semestre)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(docentes).State = EntityState.Modified;
+                db.Entry(semestre).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(docentes);
+            return View(semestre);
         }
 
-        // GET: Docentes/Delete/5
+        // GET: Semestres/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Docentes docentes = db.Docentes.Find(id);
-            if (docentes == null)
+            Semestre semestre = db.Semestre.Find(id);
+            if (semestre == null)
             {
                 return HttpNotFound();
             }
-            return View(docentes);
+            return View(semestre);
         }
 
-        // POST: Docentes/Delete/5
+        // POST: Semestres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Docentes docentes = db.Docentes.Find(id);
-            db.Docentes.Remove(docentes);
+            Semestre semestre = db.Semestre.Find(id);
+            db.Semestre.Remove(semestre);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
