@@ -12,6 +12,11 @@ namespace SistemasVirtuales.Controllers
         {
             return View();
         }
+      
+        public ActionResult Login(string pwd,string user)
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
